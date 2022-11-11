@@ -1,0 +1,10 @@
+.container input {
+  border: 3px solid;
+  border-radius: 50px;
+}
+
+.container button {
+  border-radius: 50px;
+  width: 100%;
+  margin: 5px;
+}
