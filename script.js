@@ -1,36 +1,26 @@
-let userForm = document.querySelector("#userForm");
-userForm.addEventListener("submit", formHandler);
-let alertDOM = document.querySelector("#alert");
+let lessonForm = document.querySelector("#lessonForm");
+let lessonList = document.querySelector("#lessonList");
+let alert = document.querySelector("#alert");
 
-const alertFunction = (title, message, className = "warning") => `
-<div class="alert alert-${className} alert-dismissible fade show" role="alert">
-  <strong>${title}</strong> ${message}
-  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>`;
+lessonForm.addEventListener("submit", formHandler);
 
 function formHandler(event) {
   event.preventDefault();
-  const USER_NAME = document.querySelector("#username");
-  const SCORE = document.querySelector("#score");
-  if (USER_NAME.value && SCORE.value) {
-    addItem(USER_NAME.value, SCORE.value); // gönderdikten sonra sıfırladık
-    USER_NAME.value = "";
-    SCORE.value = "";
+  let lessonName = document.querySelector("#lessonname");
+  let score = document.querySelector("#score");
+  if (lessonName.value && score.value) {
+    addItem(lessonName.value, score.value); // gönderdikten sonra sıfırladık
+    lessonName.value = "";
+    score.value = "";
   } else {
-    alertDOM.innerHTML = alertFunction(
-      "HATA",
-      "Eksik Bilgi Girdiniz",
-      "danger"
-    );
+    alert.innerHTML = alertFunction("HATA", "Eksik Bilgi Girdiniz", "danger");
   }
 }
 
-let userListDOM = document.querySelector("#userList");
-
-const addItem = (userName, score) => {
+const addItem = (lessonName, score) => {
   let liDOM = document.createElement("li");
   liDOM.innerHTML = `
-  ${userName}
+  ${lessonName}
   <span class="badge bg-primary rounded-pill">${score}</span> `;
   liDOM.classList.add(
     "list-group-item",
@@ -39,6 +29,12 @@ const addItem = (userName, score) => {
     "align-items-center"
   );
   liDOM.style.border = "3px solid";
-  userListDOM.appendChild(liDOM);
+  lessonList.appendChild(liDOM);
 };
 (",");
+
+const alertFunction = (title, message, className = "warning") => `
+<div class="alert alert-${className} alert-dismissible fade show" role="alert">
+  <strong>${title}</strong> ${message}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>`;
